@@ -33,4 +33,5 @@ os.makedirs("output", exist_ok=True)
 df = pd.DataFrame(comments)
 df.to_csv("output/comments-youtube.csv", index=False)
 
+# Tampilkan pesan sukses
 print("Permintaan berhasil diproses. Hasil disimpan di output/comments-youtube.csv")
