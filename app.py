@@ -52,6 +52,41 @@ if uploaded_file:
             mime="text/csv"
         )
 
+        # --- INSIGHT & ANALISIS ---
+        st.subheader("Insight")
+
+        total = len(df)
+        positif = (df["sentimen"] == "positif").sum()
+        negatif = (df["sentimen"] == "negatif").sum()
+        netral = (df["sentimen"] == "netral").sum()
+
+        insight_text = f"""
+        ### Ringkasan Insight Berdasarkan Komentar:
+        - **Total komentar:** {total}
+        - **Komentar positif:** {positif} ({positif/total*100:.1f}%)
+        - **Komentar negatif:** {negatif} ({negatif/total*100:.1f}%)
+        - **Komentar netral:** {netral} ({netral/total*100:.1f}%)
+
+        ### Analisis:
+        - Sentimen **dominan**: **{df['sentimen'].mode()[0]}**
+        - Secara umum, komentar bersifat **{'lebih positif' if positif > negatif else 'lebih negatif' if negatif > positif else 'seimbang'}**.
+        """
+
+        st.markdown(insight_text)
+
+        # --- Contoh Komentar Berdasarkan Sentimen ---
+        st.subheader("Contoh Komentar Berdasarkan Sentimen")
+
+        st.markdown("### Komentar Positif")
+        st.write(df[df["sentimen"] == "positif"]["clean_comment"].head(5).tolist())
+
+        st.markdown("### Komentar Negatif")
+        st.write(df[df["sentimen"] == "negatif"]["clean_comment"].head(5).tolist())
+
+        st.markdown("### Komentar Netral")
+        st.write(df[df["sentimen"] == "netral"]["clean_comment"].head(5).tolist())
+
+
         # --- Visualisasi ---
         st.subheader("Visualisasi Sentimen")
 
