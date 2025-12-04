@@ -20,8 +20,8 @@ def analisis_sentimen(teks):
         return "netral"
 
 # --- UI ---
-st.title("Aplikasi Analisis Sentimen - BIG DATA")
-st.write("Upload file CSV berisi komentar dan lihat hasil analisis sentimen + visualisasi.")
+st.title("Analisis Sentimen - BIG DATA")
+st.write("Upload file CSV berisi komentar yang sudah dicleaning")
 
 uploaded_file = st.file_uploader("Upload file CSV", type=["csv"])
 
